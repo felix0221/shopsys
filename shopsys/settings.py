@@ -74,12 +74,19 @@ WSGI_APPLICATION = 'shopsys.wsgi.application'
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+        'default': {
+                #  'ENGINE': 'mysql.connector.django', # mysqlclient上这样写的，不需要
+                'ENGINE': 'django.db.backends.mysql',
+                'NAME': 'shopsys',       # 数据库名
+                'USER': 'shopsys',       # 数据库账户名
+                'PASSWORD': '12345678',  # 数据库密码，为安全起见，应从系统环境变量读取
+                                         # 例如os.environ['SHOPSYS_DB_PASS']
+                'HOST': '127.0.0.1',     # 数据库服务器IP
+                'PORT': '3306',          # 数据库服务端口
+                'TEST': {}               # 测试数据库配置
 
+            }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
